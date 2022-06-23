@@ -12,9 +12,6 @@
     }
   }
 
-
-  $photo = '';
-
   /** 
    * $_FILES[name]['name'] 原檔名
    * $_FILES[name]['tmp_name'] server 上的暫存檔名
