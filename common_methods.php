@@ -58,8 +58,20 @@
   echo 'l 在 apple 中的索引為 ' . strpos('apple', 'l');
 
   echo '<hr />';
+
+  // 去掉 html 標籤
+  echo '<h1>strip_tags()</h1>';
+  echo strip_tags("Hello <b>world!</b>");
+
   echo '<hr />';
 
+  // 取得檔名，如果傳第二個參數可以去除副檔名
+  echo '<h1>basename()</h1>';
+  echo basename("/aaaa/myfile.php", ".php");
+
+  echo '<hr />';
+  echo '<hr />';
+  
   echo '<h1>Number</h1>';
 
   // round() 四捨五入
