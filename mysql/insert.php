@@ -9,7 +9,7 @@
 
   print_r($db);
 
-  // 更新的欄位數大於 0
+  // 如果有資料異動
   if(mysqli_affected_rows($db) > 0) {
     // 取出一筆更新的 ID
     $new_id = mysqli_insert_id($db);
