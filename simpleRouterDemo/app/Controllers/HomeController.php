@@ -8,7 +8,9 @@ use App\View;
 
 class HomeController {
   public function index(): View {
-    return View::make('index', ['title' => 'this is home page']);
+    $storageFiles = array_slice(scandir(STORAGE_PATH), 2);
+
+    return View::make('index', ['title' => 'this is home page', 'storageFiles' => $storageFiles]);
   }
 
   public function upload() {
@@ -25,5 +27,17 @@ class HomeController {
 
       move_uploaded_file($file['tmp_name'], $filePath);
     }
+
+    header('Location: /');
+  }
+
+  public function download() {
+    $filename = $_GET['filename'];
+    $mineType = mime_content_type($filename);
+
+    header("Content-Type: {$mineType}");
+    header("Content-Disposition: attachment;filename=\"{$filename}\"");
+
+    readfile(STORAGE_PATH . '/' . $filename);
   }
 }
