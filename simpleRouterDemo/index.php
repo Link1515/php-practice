@@ -2,15 +2,22 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
+define('STORAGE_PATH', __DIR__ . '/storage');
+define('VIEW_PATH', __DIR__ . '/app/views');
+
 // echo '<pre>';
 // print_r($_SERVER);
 // echo '</pre>';
 
+session_start();
+
 $router = new App\Router();
 
 $router
-  ->register('/', [App\Classes\Home::class, 'index'])
-  ->register('/invoices', [App\Classes\Invoice::class, 'index'])
-  ->register('/invoices/create', [App\Classes\Invoice::class, 'create']);
+  ->get('/', [App\Controllers\HomeController::class, 'index'])
+  ->post('/upload', [App\Controllers\HomeController::class, 'upload'])
+  ->get('/invoices', [App\Controllers\InvoiceController::class, 'index'])
+  ->get('/invoices/create', [App\Controllers\InvoiceController::class, 'create'])
+  ->post('/invoices/create', [App\Controllers\InvoiceController::class, 'store']);
 
-echo $router->resolve($_SERVER['REQUEST_URI']);
+echo $router->resolve($_SERVER['REQUEST_URI'], strtolower($_SERVER['REQUEST_METHOD']));
