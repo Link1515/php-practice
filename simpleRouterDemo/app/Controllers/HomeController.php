@@ -16,6 +16,10 @@ class HomeController {
     print_r($_FILES);
     echo '</pre>';
 
+    if (!is_dir(STORAGE_PATH)) {
+      mkdir(STORAGE_PATH);
+    }
+
     foreach ($_FILES as $file) {
       $filePath = STORAGE_PATH . '/' . $file['name'];
 
