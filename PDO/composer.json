@@ -1,0 +1,12 @@
+{
+  "name": "mocli/pdo",
+  "authors": [
+    {
+      "name": "Link",
+      "email": "link.lin@udngroup.com"
+    }
+  ],
+  "require": {
+    "vlucas/phpdotenv": "^5.5"
+  }
+}
