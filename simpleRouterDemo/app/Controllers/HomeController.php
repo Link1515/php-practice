@@ -8,7 +8,7 @@ use App\View;
 
 class HomeController {
   public function index(): View {
-    $storageFiles = array_slice(scandir(STORAGE_PATH), 2);
+    $storageFiles = is_dir(STORAGE_PATH) ? array_slice(scandir(STORAGE_PATH), 2) : [];
 
     return View::make('index', ['title' => 'this is home page', 'storageFiles' => $storageFiles]);
   }
