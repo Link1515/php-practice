@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\View;
-use App\App;
 use App\Models\User;
 use App\Models\Invoice;
 use App\Models\SignUp;
+use App\Services\InvoicesService;
 
 class InvoiceController {
+  public function __construct(private InvoicesService $invoicesService) {
+  }
   public function index(): View {
     $email = 'fdfefe@fdka.com';
     $name = 'erooo';
@@ -40,5 +42,9 @@ class InvoiceController {
     $amount = $_POST['amount'];
 
     var_dump($amount);
+  }
+
+  public function process() {
+    $this->invoicesService->process([], 25);
   }
 }
