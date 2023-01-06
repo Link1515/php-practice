@@ -1,0 +1,17 @@
+{
+    "name": "mocli/email",
+    "autoload": {
+        "psr-4": {
+            "Mocli\\Email\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Link",
+            "email": "link.lin@udngroup.com"
+        }
+    ],
+    "require": {
+        "symfony/mailer": "^6.2"
+    }
+}
