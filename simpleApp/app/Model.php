@@ -9,4 +9,10 @@ abstract class Model {
   public function __construct() {
     $this->db = App::db();
   }
+
+  public function lazyFetch(\PDOStatement $stmt): \Generator {
+    foreach ($stmt as $record) {
+      yield $record;
+    }
+  }
 }
