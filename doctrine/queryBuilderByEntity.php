@@ -23,25 +23,19 @@ $params = [
 
 $entityManager = EntityManager::create($params, ORMSetup::createAttributeMetadataConfiguration([__DIR__ . '/app/Entity']));
 
-// ***** insert *****
+$queryBuilder = $entityManager->createQueryBuilder();
 
-$user = (new User())
-  ->setFullName('TestUser4455')
-  ->setEmail('ew554@aaa.com')
-  ->setIsActive(1);
+$query = $queryBuilder
+  // column name is from entity class property not from mysql
+  ->select('u.email', 'u.fullName', 'u.createdAt', 'i.amount')
+  ->from(User::class, 'u')
+  ->leftJoin('u.invoices', 'i')
+  ->where('u.id = :id')
+  ->setParameter(':id', 11)
+  ->getQuery();
 
-$invoice = (new Invoice())
-  ->setAmount(2022)
-  ->setUser($user);
+echo $query->getDQL();
 
-$entityManager->persist($user);
-$entityManager->persist($invoice);
-$entityManager->flush();
+$user = $query->getResult();
 
-// ***** update *****
-// $user = $entityManager->find(User::class, 29);
-
-// $user->setIsActive(0);
-// $user->getInvoice()->get(0)->setAmount(2023);
-
-// $entityManager->flush();
+print_r($user);

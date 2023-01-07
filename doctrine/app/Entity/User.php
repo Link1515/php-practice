@@ -6,10 +6,12 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table('users')]
+#[ORM\HasLifecycleCallbacks]
 
 class User {
   #[ORM\Id]
@@ -34,6 +36,11 @@ class User {
 
   public function __construct() {
     $this->invoices = new ArrayCollection();
+  }
+
+  #[ORM\PrePersist]
+  public function onPrePersist(PrePersistEventArgs $args) {
+    $this->createdAt = new \DateTime(timezone: new \DateTimeZone('Asia/Taipei'));
   }
 
   public function getId(): int {
@@ -78,12 +85,6 @@ class User {
 
   public function getCreatedAt(): \DateTime {
     return $this->createdAt;
-  }
-
-  public function setCreatedAt(\DateTime $createdAt): User {
-    $this->createdAt = $createdAt;
-
-    return $this;
   }
 
   public function getInvoice(): Collection {
