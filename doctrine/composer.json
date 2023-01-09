@@ -1,0 +1,21 @@
+{
+  "name": "mocli/doctrine",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Link",
+      "email": "link.lin@udngroup.com"
+    }
+  ],
+  "require": {
+    "vlucas/phpdotenv": "^5.5",
+    "doctrine/dbal": "^3.5",
+    "doctrine/orm": "^2.14",
+    "symfony/cache": "^6.2",
+    "doctrine/migrations": "^3.5"
+  }
+}
