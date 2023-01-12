@@ -1,0 +1,17 @@
+{
+  "name": "mocli/template-engines",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app"
+    }
+  },
+  "authors": [
+    {
+      "name": "Link",
+      "email": "link.lin@udngroup.com"
+    }
+  ],
+  "require": {
+    "twig/twig": "^3.5"
+  }
+}
