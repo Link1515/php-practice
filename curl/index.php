@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 $handle = curl_init();
-// $url = 'https://example.com';
 $query = http_build_query([
   'postId' => 1
 ]);
@@ -13,6 +12,7 @@ curl_setopt_array($handle, [
   CURLOPT_URL => $url,
   CURLOPT_SSL_VERIFYHOST => false,
   CURLOPT_SSL_VERIFYPEER => false,
+  CURLOPT_TIMEOUT => 5,
   CURLOPT_RETURNTRANSFER => true
 ]);
 
